@@ -1,32 +1,46 @@
 <template>
-  <h1 @click="changeMessage">{{ msg }}</h1>
-  <h1>{{ reversedMessage }}</h1>
+  <h1 @click="activate"
+      :class="{ active: isActive }"> 
+    Hello?!({{ isActive }})
+  </h1> 
+  <h1 
+    :style="[fontStyle, backgroundStyle]"
+    @click="changeStyle">
+    Style Binding
+  </h1>
 </template>
 
 <script>
+// :class="{ active: isActive }" 
+// 클래스에 active를 넣고 싶을 때 isActive의 영향을 받아서 isActive의 값이 true면 active로 변경(클래스 바인딩)
 export default {
   data() {
     return {
-      msg: 'Hello?'
-    }
-  },
-  computed: {
-    reversedMessage() {
-      return this.msg.split('').reverse().join('')
-    }
-  },
-  watch: { // 데이터의 변경사항을 감시, 감지가 되면 이후의 로직 실행 // 새로운 매개변수를 할당 가능
-    msg(newValue) {
-      console.log('msg:', newValue)
-    },
-    reversedMessage() {
-      console.log('reversedMessage:', this.reversedMessage)
+      isActive: false,
+      fontStyle: {
+        color: 'orange',
+        fontSize: '30px'
+      },
+      backgroundStyle: {
+        backgroundColor: 'black'
+      }
     }
   },
   methods: {
-    changeMessage() {
-      this.msg = 'Good!'
+    activate() {
+      this.isActive = true
+    },
+    changeStyle() {
+      this.fontStyle.color = 'red'
+      this.fontStyle.fontSize = '50px'
     }
   }
 }
 </script>
+
+<style scoped>
+  .active {
+    color: red;
+    font-weight: bold;
+  }
+</style>

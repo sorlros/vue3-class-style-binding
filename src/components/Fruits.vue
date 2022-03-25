@@ -5,7 +5,7 @@
       <li v-for="fruit in fruits" :key="fruit">
         {{ fruit }}
       </li>
-    </ul>
+    </ul> 
   </section>
   <section>
     <h1>Reverse Fruits</h1>
